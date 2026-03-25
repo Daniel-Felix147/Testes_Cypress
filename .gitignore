@@ -1,0 +1,31 @@
+node_modules
+
+# Estudo local: não versionar (mantém na sua máquina se quiser rodar testes antigos)
+cypress/e2e/estudo-local/
+
+# Page Objects usados só pelos testes de estudo
+cypress/pages/
+
+# Cypress em modo component (não usado neste portfólio)
+cypress/support/component.js
+cypress/support/component-index.html
+
+# Cypress artifacts
+cypress/videos
+cypress/screenshots
+.cypress
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+.env.*
+
+# OS
+Thumbs.db
+ehthumbs.db
+.DS_Store
+

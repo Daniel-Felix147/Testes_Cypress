@@ -1,0 +1,11 @@
+{
+  "usuarioValido": {
+    "email": "albertoleal@gmail.com",
+    "senha": "123456789"
+  },
+  "usuarioInvalido": {
+    "email": "nao_existe_no_site@teste.com",
+    "senha": "senha_completamente_errada"
+  },
+  "senhaIncorretaParaUsuarioCadastrado": "senha_errada_somente_para_teste_automacao"
+}
