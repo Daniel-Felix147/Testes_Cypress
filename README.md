@@ -2,6 +2,17 @@
 
 Este repositório contém testes automatizados em Cypress (E2E) para estudo e portfólio.
 
+O Git já está configurado nesta pasta: o primeiro commit inclui **apenas** o portfólio e arquivos necessários (`git status` não mostra `estudo-local`, `pages` nem `node_modules` por causa do `.gitignore`).
+
+### Publicar no GitHub
+
+1. Crie um repositório vazio no GitHub (sem README, para evitar conflito).
+2. Na pasta do projeto:
+   ```bash
+   git remote add origin https://github.com/SEU_USUARIO/SEU_REPO.git
+   git push -u origin main
+   ```
+
 ## Pré-requisitos
 
 1. `Node.js` instalado
