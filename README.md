@@ -1,82 +1,82 @@
-# Cypress (E2E) - Portfolio
+# 🧪 Projeto de Automação de Testes E2E com Cypress (Portfólio)
 
-Este repositório contém testes automatizados em Cypress (E2E) para estudo e portfólio.
+Este repositório contém um projeto de automação de testes **End-to-End (E2E)** utilizando **Cypress**, desenvolvido para fins de estudo e portfólio na área de **Quality Assurance (QA)**.
 
-O Git já está configurado nesta pasta: o primeiro commit inclui **apenas** o portfólio e arquivos necessários (`git status` não mostra `estudo-local`, `pages` nem `node_modules` por causa do `.gitignore`).
+O objetivo é validar fluxos reais de um usuário em um e-commerce, aplicando boas práticas utilizadas em projetos profissionais.
 
-### Publicar no GitHub
+🔗 Site testado: https://www.automationexercise.com/
 
-1. Crie um repositório vazio no GitHub (sem README, para evitar conflito).
-2. Na pasta do projeto:
-   ```bash
-   git remote add origin https://github.com/SEU_USUARIO/SEU_REPO.git
-   git push -u origin main
-   ```
+---
 
-## Pré-requisitos
+## 🚀 Tecnologias utilizadas
+- Cypress
+- JavaScript
+- Node.js
+- npm
 
-1. `Node.js` instalado
-2. (Opcional) `npm` atualizado
+---
 
-## Rodar os testes
+## 🎯 Objetivo do projeto
+Automatizar cenários funcionais importantes do sistema, validando:
+- autenticação do usuário
+- mensagens de erro em login inválido
+- navegação no catálogo de produtos
+- adição de produto ao carrinho
 
-1. Instale as dependências:
-   ```bash
-   npm install
-   ```
-2. Abra o Cypress (modo interface):
-   ```bash
-   npm run cypress:open
-   ```
-3. Ou execute em modo headless **todos os cenários da pasta portfolio**:
-   ```bash
-   npm run cypress:run
-   ```
-4. Para rodar **um arquivo só** (exemplo):
-   ```bash
-   npx cypress run --spec "cypress/e2e/portfolio/login-sucesso.cy.js"
-   ```
+---
 
-## O que entra no GitHub (e o que fica só na sua máquina)
+## ✅ Boas práticas aplicadas
+- Organização por cenários (`1 arquivo de teste por fluxo`)
+- Uso de **Fixtures** para dados de teste (`usuarios.json`)
+- Uso de **Custom Commands** (`cy.login()`)
+- Uso de `before()` e `beforeEach()` para setup e reutilização
+- Validações com `should()` garantindo resultados esperados
+- Testes com escrita clara e foco em comportamento do usuário
 
-**Versionado no repositório (portfólio “limpo”):**
+---
 
-- `cypress/e2e/portfolio/*.cy.js` — cenários E2E do portfólio
-- `cypress/fixtures/usuarios.json` — dados dos testes
-- `cypress/support/e2e.js` e `cypress/support/commands.js` — suporte ao Cypress (`cy.login`, etc.)
-- `cypress.config.js`, `package.json`, `README.md`, `.gitignore`
+## 🧪 Cenários automatizados
 
-**Não vai para o GitHub** (está listado no `.gitignore`):
+| Arquivo | Cenário |
+|--------|---------|
+| `login-sucesso.cy.js` | Login com credenciais válidas e validação de usuário autenticado |
+| `login-credenciais-invalidas.cy.js` | Login com usuário inexistente e validação de mensagem de erro |
+| `login-senha-incorreta.cy.js` | Login com email válido e senha incorreta validando erro |
+| `carrinho-adicionar-produto.cy.js` | Login + seleção de produto + adição ao carrinho e validação de confirmação |
 
-- `cypress/e2e/estudo-local/` — specs antigos que você usou para estudar (continuam na sua pasta local se já estiverem aí)
-- `cypress/pages/` — Page Objects usados só por esses estudos
-- `cypress/support/component.js` e `component-index.html` — modo *component* não usado neste projeto
+---
 
-O `cypress.config.js` define `e2e.specPattern` só para `cypress/e2e/portfolio/**/*.cy.js`, então `npm run cypress:open` e `npm run cypress:run` **só enxergam o portfólio**, mesmo que a pasta `estudo-local` exista no disco.
+## 📂 Estrutura do projeto
+ 
+cypress/
+e2e/
+portfolio/
+fixtures/
+usuarios.json
+support/
+commands.js
+e2e.js
 
-**Primeiro commit:** se algum arquivo de estudo já tiver sido commitado antes, remova do índice com `git rm -r --cached cypress/e2e/estudo-local cypress/pages` (ajuste os caminhos) e faça um novo commit.
 
-## Estrutura dos cenários (um arquivo por teste)
+---
 
-Os cenários do portfólio ficam em `cypress/e2e/portfolio/`. Cada arquivo tem um `describe` e um fluxo independente; assim fica fácil achar, manter e mostrar no GitHub.
+## 📌 Dados de teste (Fixtures)
 
-| Arquivo | O que valida |
-|--------|----------------|
-| `login-sucesso.cy.js` | Login com `usuarioValido` do fixture e texto `Logged in as`. |
-| `login-credenciais-invalidas.cy.js` | Email e senha **inexistentes** no site (`usuarioInvalido`); mensagem de erro e usuário **não** logado. |
-| `login-senha-incorreta.cy.js` | Email **cadastrado** (`usuarioValido.email`) com senha **errada** (`senhaIncorretaParaUsuarioCadastrado`); mensagem de erro e usuário **não** logado. |
-| `carrinho-adicionar-produto.cy.js` | Login válido, abre produtos, adiciona ao carrinho e verifica `Added!`. |
+Os dados utilizados nos testes estão no arquivo:
 
-### Dados em `cypress/fixtures/usuarios.json`
+`cypress/fixtures/usuarios.json`
 
-- `usuarioValido` — conta que existe no Automation Exercise (para fluxos felizes).
-- `usuarioInvalido` — email/senha fictícios (nenhum cadastro no site).
-- `senhaIncorretaParaUsuarioCadastrado` — string usada só no teste “senha incorreta” com o email válido.
+Exemplo de estrutura:
 
-### Comandos reutilizados
+```json
+{
+  "usuarioValido": {
+    "email": "exemplo@gmail.com",
+    "senha": "123456"
+  },
+  "usuarioInvalido": {
+    "email": "inexistente@teste.com",
+    "senha": "senha_errada"
+  }
+}
 
-- `cy.login(email, senha)` está em `cypress/support/commands.js` (abre “Signup / Login”, preenche e envia).
-
-## Observação sobre credenciais
-
-As credenciais são de um site de testes público. Ajuste o fixture se quiser outra conta, mas mantenha `usuarioInvalido` e a senha incorreta apenas para cenários negativos.
