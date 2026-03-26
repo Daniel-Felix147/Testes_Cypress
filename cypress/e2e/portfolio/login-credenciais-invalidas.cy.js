@@ -1,21 +1,24 @@
-// Cenário isolado: email e senha que não existem no cadastro do site.
-describe('AutomationExercise — Login com credenciais inválidas', () => {
-  const baseUrl = 'https://www.automationexercise.com/';
-  let usuarioInvalido;
+describe('AutomationExercise - Login com credenciais inválidas', () => {
+  let usuarioInvalido
 
   before(() => {
     cy.fixture('usuarios').then((dados) => {
-      usuarioInvalido = dados.usuarioInvalido;
-    });
-  });
+      usuarioInvalido = dados.usuarioInvalido
+    })
+  })
 
   beforeEach(() => {
-    cy.visit(baseUrl);
-  });
+    cy.visit('/')
+  })
 
-  it('exibe mensagem de erro e não autentica', () => {
-    cy.login(usuarioInvalido.email, usuarioInvalido.senha);
-    cy.contains('Your email or password is incorrect!').should('be.visible');
-    cy.contains('Logged in as').should('not.exist');
-  });
-});
+  it('Não deve autenticar e deve exibir mensagem de erro', () => {
+    cy.contains('Signup / Login').click()
+
+    cy.get('[data-qa="login-email"]').type(usuarioInvalido.email)
+    cy.get('[data-qa="login-password"]').type(usuarioInvalido.senha)
+    cy.get('[data-qa="login-button"]').click()
+
+    cy.contains('Your email or password is incorrect!').should('be.visible')
+    cy.contains('Logged in as').should('not.exist')
+  })
+})

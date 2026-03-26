@@ -1,24 +1,28 @@
-// Cenário isolado: após login válido, adiciona o primeiro produto ao carrinho.
-describe('AutomationExercise — Carrinho: adicionar produto', () => {
-  const baseUrl = 'https://www.automationexercise.com/';
-  let usuarioValido;
+import productPage from '../../pages/productPage'
+import cartPage from '../../pages/cartPage'
+
+describe('AutomationExercise - Adicionar produto ao carrinho', () => {
+  let usuarioValido
 
   before(() => {
     cy.fixture('usuarios').then((dados) => {
-      usuarioValido = dados.usuarioValido;
-    });
-  });
+      usuarioValido = dados.usuarioValido
+    })
+  })
 
   beforeEach(() => {
-    cy.visit(baseUrl);
-  });
+    cy.visit('/')
+  })
 
-  it('adiciona um produto e mostra confirmação', () => {
-    cy.login(usuarioValido.email, usuarioValido.senha);
+  it('Deve adicionar o primeiro produto ao carrinho com sucesso', () => {
+    cy.login(usuarioValido.email, usuarioValido.senha)
 
-    cy.contains('Products').click();
-    cy.contains('View Product').first().click();
-    cy.contains('Add to cart').click();
-    cy.contains('Added!').should('be.visible');
-  });
-});
+    productPage.acessarProdutos()
+    productPage.selecionarPrimeiroProduto()
+    productPage.adicionarAoCarrinho()
+    productPage.validarProdutoAdicionado()
+
+    cartPage.acessarCarrinho()
+    cartPage.validarPaginaCarrinho()
+  })
+})

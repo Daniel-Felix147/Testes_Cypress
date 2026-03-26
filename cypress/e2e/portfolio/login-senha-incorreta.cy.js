@@ -1,24 +1,24 @@
-// Cenário isolado: email cadastrado no site, mas senha propositalmente errada
-// (diferente do teste de “usuário inexistente”, que usa email+senha fictícios).
-describe('AutomationExercise — Login com senha incorreta', () => {
-  const baseUrl = 'https://www.automationexercise.com/';
-  let usuarioValido;
-  let senhaIncorreta;
+describe('AutomationExercise - Login com senha incorreta', () => {
+  let usuarioSenhaIncorreta
 
   before(() => {
     cy.fixture('usuarios').then((dados) => {
-      usuarioValido = dados.usuarioValido;
-      senhaIncorreta = dados.senhaIncorretaParaUsuarioCadastrado;
-    });
-  });
+      usuarioSenhaIncorreta = dados.usuarioSenhaIncorreta
+    })
+  })
 
   beforeEach(() => {
-    cy.visit(baseUrl);
-  });
+    cy.visit('/')
+  })
 
-  it('exibe mensagem de erro e não autentica', () => {
-    cy.login(usuarioValido.email, senhaIncorreta);
-    cy.contains('Your email or password is incorrect!').should('be.visible');
-    cy.contains('Logged in as').should('not.exist');
-  });
-});
+  it('Não deve autenticar e deve exibir mensagem de erro', () => {
+    cy.contains('Signup / Login').click()
+
+    cy.get('[data-qa="login-email"]').type(usuarioSenhaIncorreta.email)
+    cy.get('[data-qa="login-password"]').type(usuarioSenhaIncorreta.senha)
+    cy.get('[data-qa="login-button"]').click()
+
+    cy.contains('Your email or password is incorrect!').should('be.visible')
+    cy.contains('Logged in as').should('not.exist')
+  })
+})

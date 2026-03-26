@@ -1,20 +1,17 @@
-// Cenário isolado: login com credenciais válidas (fixture usuarioValido).
-describe('AutomationExercise — Login com sucesso', () => {
-  const baseUrl = 'https://www.automationexercise.com/';
-  let usuarioValido;
+describe('AutomationExercise - Login com sucesso', () => {
+  let usuarioValido
 
   before(() => {
     cy.fixture('usuarios').then((dados) => {
-      usuarioValido = dados.usuarioValido;
-    });
-  });
+      usuarioValido = dados.usuarioValido
+    })
+  })
 
   beforeEach(() => {
-    cy.visit(baseUrl);
-  });
+    cy.visit('/')
+  })
 
-  it('autentica e exibe estado de logado', () => {
-    cy.login(usuarioValido.email, usuarioValido.senha);
-    cy.contains('Logged in as').should('be.visible');
-  });
-});
+  it('Deve realizar login com credenciais válidas', () => {
+    cy.login(usuarioValido.email, usuarioValido.senha)
+  })
+})

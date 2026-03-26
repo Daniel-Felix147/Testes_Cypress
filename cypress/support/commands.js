@@ -8,4 +8,6 @@ Cypress.Commands.add('login', (email, senha) => {
 
   cy.get('[data-qa="login-button"]').click()
 
+  cy.contains('Logged in as').should('be.visible')
+
 })

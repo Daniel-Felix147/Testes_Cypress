@@ -32,6 +32,7 @@ Automatizar cenários funcionais importantes do sistema, validando:
 - Uso de `before()` e `beforeEach()` para setup e reutilização
 - Validações com `should()` garantindo resultados esperados
 - Testes com escrita clara e foco em comportamento do usuário
+- Separação de responsabilidades com Page Objects
 
 ---
 
@@ -47,16 +48,42 @@ Automatizar cenários funcionais importantes do sistema, validando:
 ---
 
 ## 📂 Estrutura do projeto
- 
 cypress/
 e2e/
 portfolio/
 fixtures/
 usuarios.json
+pages/
+productPage.js
+cartPage.js
 support/
 commands.js
 e2e.js
 
+
+---
+
+## ▶️ Como executar o projeto
+
+### 1️⃣ Instalar dependências
+```bash
+npm install
+```
+
+### 2️⃣ Executar Cypress no modo interface
+```bash
+npm run cypress:open
+```
+
+### 3️⃣ Executar Cypress em modo headless (terminal)
+```bash
+npm run cypress:run
+```
+
+### 4️⃣ Executar um teste específico
+```bash
+npx cypress run --spec "cypress/e2e/portfolio/login-sucesso.cy.js"
+```
 
 ---
 
@@ -79,4 +106,14 @@ Exemplo de estrutura:
     "senha": "senha_errada"
   }
 }
+```
 
+---
+
+## 👤 Autor
+
+Daniel Félix Gomes  
+📍 Barueri/SP  
+📧 danfelix147@gmail.com  
+
+🔗 LinkedIn: https://www.linkedin.com/in/daniel-felix-b81845296/

@@ -1,11 +1,13 @@
 {
   "name": "cypress-portfolio-tests",
   "version": "1.0.0",
+  "description": "Projeto de automação de testes E2E com Cypress para portfólio QA.",
   "private": true,
   "devDependencies": {
     "cypress": "^15.9.0"
   },
   "scripts": {
+    "test": "cypress run",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   }
